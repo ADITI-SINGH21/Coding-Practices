@@ -131,44 +131,38 @@ public class RedBlackTree<K extends Comparable, V>{
 	public RedBlackNode RotateRight(RedBlackNode pointer){ // right rotation
 		rcount++; //counter of number of rotations
 		pointer = pointer.parent;
+		RedBlackNode temp = pointer.parent;
 		RedBlackNode a = pointer.left;
-    	if(a.right!=null) 
-    		pointer.left = a.right;
-    	else
-    		pointer.left = null;
-    	if (a.right==null) 
-    		a.parent = pointer.parent;
-    	else 
-    		a.right.parent = pointer;
-    	if (pointer.parent==null) 
+    	pointer.left = a.right;
+    	if (a.right!=null) 
+    		pointer.left.parent = pointer;
+    	a.parent = pointer.parent;
+    	if (temp==null) 
     		root = a;
-    	else if (pointer.parent.left==pointer) 
-    		pointer.parent.left= a;
+    	else if (temp.left==pointer) 
+    		temp.left= a;
     	else 
-    		pointer.parent.right = a;
+    		temp.right = a;
     	a.right = pointer;
     	pointer.parent = a;
-    	return a;
-	}
+       	return a;	
+    }
 
 	public RedBlackNode RotateLeft(RedBlackNode pointer){ // left rotation
 		rcount++;
 		pointer = pointer.parent;
+		RedBlackNode temp = pointer.parent;
 		RedBlackNode a = pointer.right;
-    	if(a.left!=null) 
-    		pointer.right = a.left;
-    	else
-    		pointer.right = null;
-    	if (a.left==null) 
-    		a.parent = pointer.parent;
-    	else 
-    		a.left.parent = pointer;
-    	if (pointer.parent==null) 
+    	pointer.right = a.left;
+    	if (a.left!=null) 
+    		pointer.right.parent = pointer;
+    	a.parent = pointer.parent;	
+    	if (temp==null) 
     		root = a;
-    	else if (pointer.parent.right==pointer) 
-    		pointer.parent.right= a;
+    	else if (temp.right==pointer) 
+    		temp.right= a;
     	else 
-    		pointer.parent.left = a;
+    		temp.left = a;
     	a.left = pointer;
     	pointer.parent = a;
     	return a;
@@ -686,6 +680,10 @@ public class RedBlackTree<K extends Comparable, V>{
 		System.out.println(tree.Rotations());
 		System.out.println(tree.GetHeight());
 		tree.displayTree(tree.root,0);
+		tree.remove(25);
+		System.out.println(tree.Rotations());
+		System.out.println(tree.GetHeight());
+		tree.displayTree(tree.root,0);
 		tree.remove(70);
 		System.out.println(tree.Rotations());
 		System.out.println(tree.GetHeight());
@@ -717,5 +715,21 @@ public class RedBlackTree<K extends Comparable, V>{
 		System.out.println(tree1.Rotations());
 		System.out.println(tree1.GetHeight());
 		tree1.displayTree(tree1.root,0);
+		RedBlackTree<Integer,String> ntree = new RedBlackTree<>();
+		ntree.insert(5,"a");
+		ntree.insert(16,"b");
+		ntree.insert(22,"c");
+		ntree.insert(45,"d");
+		ntree.insert(2,"e");
+		ntree.insert(10,"f");
+		ntree.insert(18,"g");
+		ntree.insert(30,"h");
+		ntree.insert(50,"i");
+		ntree.insert(12,"j");
+		ntree.insert(1,"k");
+		System.out.println(ntree.Rotations());
+		System.out.println(ntree.GetHeight());
+		ntree.displayTree(ntree.root,0);
+
 	}
 }
