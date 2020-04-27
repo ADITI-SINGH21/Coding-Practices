@@ -1,4 +1,4 @@
-//Recursive MergeSort for a generic type E
+//Recursive MergeSort for a generic comparable type E
 import java.util.*;
 import java.io.*;
 import java.util.concurrent.*;
@@ -7,7 +7,7 @@ public class MergeSort<E extends Comparable>{
 	public static<E extends Comparable> void mergeSort(Vector<E> in){
 		int n = in.size();
 		if (n<2) {
-			return;
+			return;// sorted in this case
 		}
 		//dividing the vector into two parts
 		Vector<E> in1 = new Vector<E>();
